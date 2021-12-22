@@ -34,7 +34,7 @@ public class RealWorldWeather : MonoBehaviour {
 		if (useLatLng) {
 			uri += "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
 		} else {
-			uri += "q=" + city + "&appid=" + apiKey;
+			uri += "id=" + city + "&appid=" + apiKey;
 		}
 		StartCoroutine (GetWeatherCoroutine (uri));
 	}
@@ -51,6 +51,7 @@ public class RealWorldWeather : MonoBehaviour {
 	}
 
 	WeatherStatus ParseJson (string json) {
+		Debug.Log("Json: "+json);
 		WeatherStatus weather = new WeatherStatus ();
 		try {
 			dynamic obj = JObject.Parse (json);
@@ -59,14 +60,17 @@ public class RealWorldWeather : MonoBehaviour {
 			weather.main = obj.weather[0].main;
 			weather.description = obj.weather[0].description;
 			weather.temperature = obj.main.temp;
+			weather.maxTemperature = obj.main.temp_max;
+			weather.minTemperature = obj.main.temp_min;
 			weather.pressure = obj.main.pressure;
 			weather.windSpeed = obj.wind.speed;
 		} catch (Exception e) {
 			Debug.Log (e.StackTrace);
 		}
 		
-		Debug.Log ("Temp in °C: " + weather.Celsius ());
-		Debug.Log ("Wind speed: " + weather.windSpeed);
+		Debug.Log ("Temp in °C: " + weather.ToCelsius(weather.temperature));
+		Debug.Log ("Max Temp in °C: " + weather.ToCelsius(weather.maxTemperature));
+		Debug.Log ("Min Temp in °C: " + weather.ToCelsius(weather.minTemperature));
 
 		return weather;
 	}

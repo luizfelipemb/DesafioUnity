@@ -7,14 +7,16 @@ public class WeatherStatus {
 	public string main;
 	public string description;
 	public float temperature; // in kelvin
+	public float maxTemperature;
+	public float minTemperature;
 	public float pressure;
 	public float windSpeed;
 
-	public float Celsius () {
-		return temperature - 273.15f;
+	public float ToCelsius (float temp) {
+		return temp - 273.15f;
 	}
 
-	public float Fahrenheit () {
-		return Celsius () * 9.0f / 5.0f + 32.0f;
+	public float ToFahrenheit (float temp) {
+		return ToCelsius(temp) * 9.0f / 5.0f + 32.0f;
 	}
 }
