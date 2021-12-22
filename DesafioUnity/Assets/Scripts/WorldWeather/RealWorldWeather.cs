@@ -26,10 +26,11 @@ public class RealWorldWeather : MonoBehaviour {
 
 	private void Start()
 	{
-		GetRealWeather ();
+		GetRealWeather();
 	}
 
-	public void GetRealWeather () {
+	public void GetRealWeather() 
+	{
 		string uri = "api.openweathermap.org/data/2.5/weather?";
 		if (useLatLng) {
 			uri += "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
@@ -68,11 +69,11 @@ public class RealWorldWeather : MonoBehaviour {
 			Debug.Log (e.StackTrace);
 		}
 		
+		Debug.Log("Weather is: "+ weather.main);
 		Debug.Log ("Temp in °C: " + weather.ToCelsius(weather.temperature));
 		Debug.Log ("Max Temp in °C: " + weather.ToCelsius(weather.maxTemperature));
 		Debug.Log ("Min Temp in °C: " + weather.ToCelsius(weather.minTemperature));
 
 		return weather;
 	}
-
 }
