@@ -16,7 +16,7 @@ public class RealWorldWeather : MonoBehaviour {
 
 		Api response docs: https://openweathermap.org/current
 	*/
-
+	[SerializeField] private WeatherManager weatherManager;
 	public string apiKey = "e0ce379f73829744d877e5366961a1e1";
 
 	public string city;
@@ -24,19 +24,10 @@ public class RealWorldWeather : MonoBehaviour {
 	public string latitude;
 	public string longitude;
 
-	private void Start()
-	{
-		GetRealWeather();
-	}
-
-	public void GetRealWeather() 
+	public void GetRealWeather(int cityID) 
 	{
 		string uri = "api.openweathermap.org/data/2.5/weather?";
-		if (useLatLng) {
-			uri += "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
-		} else {
-			uri += "id=" + city + "&appid=" + apiKey;
-		}
+		uri += "id=" + cityID + "&appid=" + apiKey;
 		StartCoroutine (GetWeatherCoroutine (uri));
 	}
 
@@ -58,6 +49,7 @@ public class RealWorldWeather : MonoBehaviour {
 			dynamic obj = JObject.Parse (json);
 
 			weather.weatherId = obj.weather[0].id;
+			weather.name = obj.name;
 			weather.main = obj.weather[0].main;
 			weather.description = obj.weather[0].description;
 			weather.temperature = obj.main.temp;
@@ -69,6 +61,10 @@ public class RealWorldWeather : MonoBehaviour {
 			Debug.Log (e.StackTrace);
 		}
 		
+		weatherManager.ChangeUI(weather.name,
+			weather.ToCelsius(weather.temperature),
+			weather.ToCelsius(weather.maxTemperature),
+			weather.ToCelsius(weather.minTemperature));
 		Debug.Log("Weather is: "+ weather.main);
 		Debug.Log ("Temp in °C: " + weather.ToCelsius(weather.temperature));
 		Debug.Log ("Max Temp in °C: " + weather.ToCelsius(weather.maxTemperature));

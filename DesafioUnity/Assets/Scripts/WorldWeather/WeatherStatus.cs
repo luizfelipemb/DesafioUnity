@@ -4,6 +4,7 @@
 
 public class WeatherStatus {
 	public int weatherId;
+	public string name;
 	public string main;
 	public string description;
 	public float temperature; // in kelvin
