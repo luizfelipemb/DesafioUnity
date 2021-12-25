@@ -61,10 +61,13 @@ public class RealWorldWeather : MonoBehaviour {
 			Debug.Log (e.StackTrace);
 		}
 		
-		weatherManager.ChangeUI(weather.name,
+		weatherManager.ChangeUI(
+			weather.name,
 			weather.ToCelsius(weather.temperature),
 			weather.ToCelsius(weather.maxTemperature),
-			weather.ToCelsius(weather.minTemperature));
+			weather.ToCelsius(weather.minTemperature),
+			weather.main
+			);
 		Debug.Log("Weather is: "+ weather.main);
 		Debug.Log ("Temp in °C: " + weather.ToCelsius(weather.temperature));
 		Debug.Log ("Max Temp in °C: " + weather.ToCelsius(weather.maxTemperature));

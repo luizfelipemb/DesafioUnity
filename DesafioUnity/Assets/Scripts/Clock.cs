@@ -10,7 +10,7 @@ public class Clock : MonoBehaviour {
 		if (WorldTimeAPI.Instance.IsTimeLoaded) 
 		{
 			DateTime currentDateTime = WorldTimeAPI.Instance.GetCurrentDateTime();
-			datetimeText.text = currentDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+			datetimeText.text = currentDateTime.ToString("dd-MM-yyyy HH:mm:ss");
 		}
 	}
 }
