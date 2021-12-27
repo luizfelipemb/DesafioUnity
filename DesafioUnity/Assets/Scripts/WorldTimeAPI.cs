@@ -18,7 +18,7 @@ public class WorldTimeAPI : MonoBehaviour {
 	[HideInInspector] public bool IsTimeLoaded = false;
 
 	private DateTime _currentDateTime = DateTime.Now;
-
+	
 	void Start ( ) 
 	{
 		StartCoroutine ( GetRealDateTimeFromAPI ( ) );

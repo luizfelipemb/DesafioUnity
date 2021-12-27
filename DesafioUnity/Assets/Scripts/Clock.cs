@@ -7,13 +7,12 @@ public class Clock : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI datetimeText;
 	[SerializeField] private WorldTimeAPI worldTimeAPI;
 
-	void FixedUpdate ( ) 
+	void Update ( ) 
 	{
 		if (worldTimeAPI.IsTimeLoaded) 
 		{
 			DateTime currentDateTime = worldTimeAPI.GetCurrentDateTime();
 			datetimeText.text = currentDateTime.ToString("dd-MM-yyyy HH:mm:ss");
-		}else
-			Debug.Log("time not loaded!");
+		}
 	}
 }
