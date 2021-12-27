@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 220145700}
   - component: {fileID: 220145699}
   - component: {fileID: 220145698}
+  - component: {fileID: 220145702}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -222,6 +223,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &220145702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220145697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144cecc95aa2a404482fa420762a6cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &263315575
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +665,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 648127970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220145702}
+        m_MethodName: GoToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Scene2
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &648127970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,7 +861,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 883040718}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220145702}
+        m_MethodName: GoToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SceneBonus
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &883040718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,7 +991,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1200017586}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 220145702}
+        m_MethodName: GoToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Scene3
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1200017586
 MonoBehaviour:
   m_ObjectHideFlags: 0

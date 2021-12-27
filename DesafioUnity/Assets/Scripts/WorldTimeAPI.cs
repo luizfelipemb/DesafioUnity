@@ -5,21 +5,6 @@ using System.Text.RegularExpressions;
 using UnityEngine.Networking;
 
 public class WorldTimeAPI : MonoBehaviour {
-#region Singleton class: WorldTimeAPI
-
-	public static WorldTimeAPI Instance;
-
-	void Awake ( ) {
-		if ( Instance == null ) {
-			Instance = this;
-			DontDestroyOnLoad ( this.gameObject );
-		} else {
-			Destroy ( this.gameObject );
-		}
-	}
-
-#endregion
-
 	//json container
 	struct TimeData {
 		//public string client_ip;
@@ -34,7 +19,8 @@ public class WorldTimeAPI : MonoBehaviour {
 
 	private DateTime _currentDateTime = DateTime.Now;
 
-	void Start ( ) {
+	void Start ( ) 
+	{
 		StartCoroutine ( GetRealDateTimeFromAPI ( ) );
 	}
 
@@ -42,7 +28,7 @@ public class WorldTimeAPI : MonoBehaviour {
 		//here we don't need to get the datetime from the server again
 		// just add elapsed time since the game start to _currentDateTime
 
-		return _currentDateTime.AddSeconds ( Time.realtimeSinceStartup );
+		return _currentDateTime.AddSeconds ( Time.timeSinceLevelLoad );
 	}
 
 	IEnumerator GetRealDateTimeFromAPI ( ) {
