@@ -7,12 +7,19 @@ public class SceneBonusManager : MonoBehaviour
 {
     [Header("To be assigned")]
     [SerializeField] private List<Square> squareList;
+    [SerializeField] private GameObject squarePrefab;
+    [SerializeField] private Transform squareSpawnerPos;
     [SerializeField] private Transform redBegin;
     [SerializeField] private Transform greenBegin;
     [SerializeField] private Transform blueBegin;
     private int _redSquares, _greenSquares, _blueSquares;
-    [Header("Settings")]
+    [Header("Settings")] 
+    public int SquaresToSpawn = 64;
     public float SeparationBetweenSquares = 2;
+    public float MinSpawnSquareSize = 0.5f;
+
+    private float _squareSize;
+    private float _gapBetweenSquares;
     
     public IEnumerator StartSorting()
     {
@@ -45,9 +52,31 @@ public class SceneBonusManager : MonoBehaviour
         beginPos.x += squaresAlready * SeparationBetweenSquares;
         return beginPos;
     }
-    
+
+    private void SpawnSquares()
+    {
+        Vector3 lastSquarePos = squareSpawnerPos.position;
+        for (int i = 0; i < SquaresToSpawn; i++)
+        {
+            var square = Instantiate(squarePrefab, lastSquarePos,transform.rotation);
+            square.transform.localScale = new Vector3(_squareSize,_squareSize,_squareSize);
+            if(i!=0)
+                square.transform.position += new Vector3(_gapBetweenSquares, 0, 0);
+            lastSquarePos = square.transform.position;
+        }
+    }
+    private float CalculateSquareSize(int nmbOfSquares)
+    {
+        float size = Mathf.Ceil((float)nmbOfSquares / 7);
+        size = 2 / size;
+        size = Mathf.Max(size, MinSpawnSquareSize);
+        return size;
+    }
     void Start()
     {
+        _gapBetweenSquares = (float) 10 / (float)SquaresToSpawn;
+        _squareSize = CalculateSquareSize(SquaresToSpawn);
+        SpawnSquares();
         StartCoroutine(StartSorting());
     }
 
