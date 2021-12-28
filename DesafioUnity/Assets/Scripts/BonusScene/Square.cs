@@ -49,11 +49,12 @@ public class Square : MonoBehaviour
     {
         if (_haveToMove)
         {
+            transform.position += _targetDirection * (Speed * Time.deltaTime);
             if (Vector3.Distance(transform.position, _target) < StoppingDistance)
             {
                 _haveToMove = false;
+                transform.position = _target;
             }
-            transform.position += _targetDirection * (Speed * Time.deltaTime);
         }   
     }
 }

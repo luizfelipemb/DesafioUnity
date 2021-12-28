@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class SceneBonusManager : MonoBehaviour
 {
+    [Header("To be assigned")]
     [SerializeField] private List<Square> squareList;
     [SerializeField] private Transform redBegin;
     [SerializeField] private Transform greenBegin;
     [SerializeField] private Transform blueBegin;
     private int _redSquares, _greenSquares, _blueSquares;
+    [Header("Settings")]
+    public float SeparationBetweenSquares = 2;
     
     public IEnumerator StartSorting()
     {
@@ -20,34 +23,32 @@ public class SceneBonusManager : MonoBehaviour
             switch (square.color)
             {
                 case SquareColor.red:
-                    Vector3 target = redBegin.position;
-                    target.x += _redSquares * 2;
-                    square.MoveTo(target);
+                    square.MoveTo(targetCalc(redBegin.position, _redSquares));
                     _redSquares++;
                     break;
                 case SquareColor.green:
                     
-                    square.MoveTo(greenBegin.position);
+                    square.MoveTo(targetCalc(greenBegin.position, _greenSquares));
                     _greenSquares++;
                     break;
                 case SquareColor.blue:
                     
-                    square.MoveTo(blueBegin.position);
+                    square.MoveTo(targetCalc(blueBegin.position, _blueSquares));
                     _blueSquares++;
                     break;
             }
         }
     }
+
+    Vector3 targetCalc(Vector3 beginPos, int squaresAlready)
+    {
+        beginPos.x += squaresAlready * SeparationBetweenSquares;
+        return beginPos;
+    }
     
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(StartSorting());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
