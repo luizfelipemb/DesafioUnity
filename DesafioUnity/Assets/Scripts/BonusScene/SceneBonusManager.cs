@@ -18,6 +18,7 @@ public class SceneBonusManager : MonoBehaviour
     public float MinSpawnSquareSize = 0.5f;
 
     private float _squareSize;
+    private int _squaresThatFillARow = Int32.MaxValue;
     private Camera _camera;
     private List<Square> _squareList = new List<Square>();
 
@@ -34,7 +35,6 @@ public class SceneBonusManager : MonoBehaviour
                     _redSquares++;
                     break;
                 case SquareColor.green:
-                    
                     square.MoveTo(TargetCalc(greenBegin.position, _greenSquares));
                     _greenSquares++;
                     break;
@@ -49,7 +49,10 @@ public class SceneBonusManager : MonoBehaviour
 
     Vector3 TargetCalc(Vector3 beginPos, int squaresAlready)
     {
+        int row = Mathf.FloorToInt((float) squaresAlready / _squaresThatFillARow);
+        squaresAlready -= row * _squaresThatFillARow;
         beginPos.x += squaresAlready * _squareSize;
+        beginPos.y -= row * _squareSize;
         return beginPos;
     }
 
@@ -68,6 +71,7 @@ public class SceneBonusManager : MonoBehaviour
             Vector3 viewPos = _camera.WorldToViewportPoint(square.transform.position);
             if (viewPos.x > 1f || viewPos.x < 0)
             {
+                _squaresThatFillARow = Mathf.Min(i, _squaresThatFillARow);
                 //if not, change its position to next row
                 square.transform.position = squareSpawnerPos.position - new Vector3(0, _squareSize * squareRow, 0);
                 squareRow++;

@@ -1231,7 +1231,7 @@ MonoBehaviour:
   redBegin: {fileID: 852395743}
   greenBegin: {fileID: 839209559}
   blueBegin: {fileID: 462158302}
-  SquaresToSpawn: 60
+  SquaresToSpawn: 64
   SeparationBetweenSquares: 2
   MinSpawnSquareSize: 0.5
 --- !u!4 &1798852950
