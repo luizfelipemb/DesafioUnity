@@ -6,7 +6,6 @@ using UnityEngine;
 public class SceneBonusManager : MonoBehaviour
 {
     [Header("To be assigned")]
-    [SerializeField] private List<Square> squareList;
     [SerializeField] private GameObject squarePrefab;
     [SerializeField] private Transform squareSpawnerPos;
     [SerializeField] private Transform redBegin;
@@ -19,50 +18,62 @@ public class SceneBonusManager : MonoBehaviour
     public float MinSpawnSquareSize = 0.5f;
 
     private float _squareSize;
-    private float _gapBetweenSquares;
-    
-    public IEnumerator StartSorting()
+    private Camera _camera;
+    private List<Square> _squareList = new List<Square>();
+
+    private IEnumerator StartSorting()
     {
-        foreach (var square in squareList)
+        foreach (var square in _squareList)
         {
             Debug.Log(square.name);
             yield return new WaitForSeconds(0.5f);
             switch (square.color)
             {
                 case SquareColor.red:
-                    square.MoveTo(targetCalc(redBegin.position, _redSquares));
+                    square.MoveTo(TargetCalc(redBegin.position, _redSquares));
                     _redSquares++;
                     break;
                 case SquareColor.green:
                     
-                    square.MoveTo(targetCalc(greenBegin.position, _greenSquares));
+                    square.MoveTo(TargetCalc(greenBegin.position, _greenSquares));
                     _greenSquares++;
                     break;
                 case SquareColor.blue:
                     
-                    square.MoveTo(targetCalc(blueBegin.position, _blueSquares));
+                    square.MoveTo(TargetCalc(blueBegin.position, _blueSquares));
                     _blueSquares++;
                     break;
             }
         }
     }
 
-    Vector3 targetCalc(Vector3 beginPos, int squaresAlready)
+    Vector3 TargetCalc(Vector3 beginPos, int squaresAlready)
     {
-        beginPos.x += squaresAlready * SeparationBetweenSquares;
+        beginPos.x += squaresAlready * _squareSize;
         return beginPos;
     }
 
     private void SpawnSquares()
     {
+        int squareRow = 1;
         Vector3 lastSquarePos = squareSpawnerPos.position;
         for (int i = 0; i < SquaresToSpawn; i++)
         {
             var square = Instantiate(squarePrefab, lastSquarePos,transform.rotation);
             square.transform.localScale = new Vector3(_squareSize,_squareSize,_squareSize);
             if(i!=0)
-                square.transform.position += new Vector3(_gapBetweenSquares, 0, 0);
+                square.transform.position += new Vector3(_squareSize, 0 ,0);
+
+            //check if can be seen
+            Vector3 viewPos = _camera.WorldToViewportPoint(square.transform.position);
+            if (viewPos.x > 1f || viewPos.x < 0)
+            {
+                //if not, change its position to next row
+                square.transform.position = squareSpawnerPos.position - new Vector3(0, _squareSize * squareRow, 0);
+                squareRow++;
+            }
             lastSquarePos = square.transform.position;
+            _squareList.Add(square.GetComponent<Square>());
         }
     }
     private float CalculateSquareSize(int nmbOfSquares)
@@ -74,7 +85,7 @@ public class SceneBonusManager : MonoBehaviour
     }
     void Start()
     {
-        _gapBetweenSquares = (float) 10 / (float)SquaresToSpawn;
+        _camera = Camera.main;
         _squareSize = CalculateSquareSize(SquaresToSpawn);
         SpawnSquares();
         StartCoroutine(StartSorting());
