@@ -1265,7 +1265,7 @@ MonoBehaviour:
   SquaresToSpawn: 64
   SeparationBetweenSquares: 2
   MinSpawnSquareSize: 0.5
-  SquareStoppingDistance: 0.1
+  SquareStoppingDistance: 0.3
   SquareSpeed: 10
 --- !u!4 &1798852950
 Transform:
