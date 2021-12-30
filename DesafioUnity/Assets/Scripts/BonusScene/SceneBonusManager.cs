@@ -24,6 +24,7 @@ public class SceneBonusManager : MonoBehaviour
     private int _squaresThatFillARow = Int32.MaxValue;
     private Camera _camera;
     private List<Square> _squareList,_squareList2;
+    private bool _endOfFirstSorting;
 
     private IEnumerator SortByColor(List<Square> squareList)
     {
@@ -46,6 +47,7 @@ public class SceneBonusManager : MonoBehaviour
                     break;
             }
         }
+        yield return StartCoroutine(SortByItself(_squareList2));
     }
     private IEnumerator SortByItself(List<Square> squareList)
     {
@@ -144,10 +146,9 @@ public class SceneBonusManager : MonoBehaviour
         _squareList2 = new List<Square>();
         _camera = Camera.main;
         _squareSize = CalculateSquareSize(SquaresToSpawn);
-        //_squareList = SpawnSquares(squareSpawnerPos.position);
+        _squareList = SpawnSquares(squareSpawnerPos.position);
         _squareList2 = SpawnSquares(squareSpawnerPos2.position);
         StartCoroutine(SortByColor(_squareList));
-        StartCoroutine(SortByItself(_squareList2));
     }
 
 }
