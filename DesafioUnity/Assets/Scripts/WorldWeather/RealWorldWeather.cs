@@ -19,11 +19,6 @@ public class RealWorldWeather : MonoBehaviour {
 	[SerializeField] private WeatherManager weatherManager;
 	public string apiKey = "e0ce379f73829744d877e5366961a1e1";
 
-	public string city;
-	public bool useLatLng = false;
-	public string latitude;
-	public string longitude;
-
 	public void GetRealWeather(int cityID) 
 	{
 		string uri = "api.openweathermap.org/data/2.5/weather?";

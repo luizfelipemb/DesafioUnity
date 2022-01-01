@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Clouds
   Image: {fileID: 21300000, guid: 89b208e9e8134114484a20e440538457, type: 3}
+  ImageGameObject: {fileID: 0}

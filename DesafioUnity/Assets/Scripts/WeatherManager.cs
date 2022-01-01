@@ -11,7 +11,6 @@ public class WeatherManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tempNowText;
     [SerializeField] private TextMeshProUGUI tempMaxText;
     [SerializeField] private TextMeshProUGUI tempMinText;
-    [SerializeField] private Image weatherImage;
     [SerializeField] private List<WeatherObject> weatherObjList;
 
     public void ChangeUI(string city,float tempNow, float tempMax, float tempMin, string weatherName)
@@ -25,7 +24,11 @@ public class WeatherManager : MonoBehaviour
         {
             if (weatherObj.Name == weatherName)
             {
-                weatherImage.sprite = weatherObj.Image;
+                weatherObj.ImageGameObject.SetActive(true);
+            }
+            else
+            {
+                weatherObj.ImageGameObject.SetActive(false);
             }
         }
     }

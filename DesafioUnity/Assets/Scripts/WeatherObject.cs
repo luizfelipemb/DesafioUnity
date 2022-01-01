@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class WeatherObject : ScriptableObject
+[Serializable]
+public class WeatherObject
 {
     public string Name;
-    public Sprite Image;
+    public GameObject ImageGameObject;
 }
