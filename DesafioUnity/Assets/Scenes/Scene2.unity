@@ -615,10 +615,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weatherManager: {fileID: 174184435}
   apiKey: e0ce379f73829744d877e5366961a1e1
-  city: 2267056
-  useLatLng: 0
-  latitude: 
-  longitude: 
 --- !u!4 &174184434
 Transform:
   m_ObjectHideFlags: 0
@@ -657,6 +653,8 @@ MonoBehaviour:
     ImageGameObject: {fileID: 2052421248}
   - Name: Clear
     ImageGameObject: {fileID: 622245547}
+  - Name: Fog
+    ImageGameObject: {fileID: 417424552}
 --- !u!1 &195478146
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +920,80 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247466934}
+  m_CullTransparentMesh: 0
+--- !u!1 &417424552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417424553}
+  - component: {fileID: 417424555}
+  - component: {fileID: 417424554}
+  m_Layer: 5
+  m_Name: FogImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &417424553
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417424552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1298358494}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 446, y: 166}
+  m_SizeDelta: {x: 127.31412, y: 127.31412}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &417424554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417424552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1cc38e305b91bba4b85785d17ffd7ad8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &417424555
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417424552}
   m_CullTransparentMesh: 0
 --- !u!1 &484469695
 GameObject:
@@ -2215,6 +2287,7 @@ RectTransform:
   - {fileID: 622245548}
   - {fileID: 2052421249}
   - {fileID: 798864754}
+  - {fileID: 417424553}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
