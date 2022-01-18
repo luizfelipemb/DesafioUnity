@@ -52,8 +52,10 @@ public class RealWorldWeather : MonoBehaviour {
 			weather.minTemperature = obj.main.temp_min;
 			weather.pressure = obj.main.pressure;
 			weather.windSpeed = obj.wind.speed;
-		} catch (Exception e) {
-			Debug.Log (e.StackTrace);
+		} catch (Exception e)
+		{
+			Debug.LogError(e.Message);
+			Debug.LogError(e.StackTrace);
 		}
 		
 		weatherManager.ChangeUI(
